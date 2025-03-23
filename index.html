@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- todo | Link rel Pembuatan Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.1/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Autour One|Rancho|Sofia|Trirong|IBM Plex Sans|Outfit|Space Grotesk|&effect=neon|outline|emboss|shadow-multiple|fire|Fragmentation|shadow-multiple">
+    <title>Tugas Minggu 6</title>
+
+    <!-- todo | Link rel pembuatan base map-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/> 
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
+    <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.draw/leaflet.draw.css"/>
+
+    <!-- todo | Styling eksternal aja 😄-->
+    <link rel="stylesheet" href="leatfleyt styling.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" ></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <script src="http://leaflet.github.io/Leaflet.draw/leaflet.draw.js"></script>
+</head>
+
+<body>
+    <p>Peta Kawasan Fakultas Teknik</p>
+    <div id="map-contain">
+        <div id="map">
+            <script>
+                var map = L.map('map', {
+                    center : [-7.765083, 110.37279],
+                    zoom : 17.5
+                });
+    
+                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 30,
+                    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">Fakultas Teknik UGM</a>'
+                }).addTo(map);
+
+                L.control.scale().addTo(map);
+    
+                // Menambahkan marker 
+                var marker = L.marker([-7.763828, 110.372030]).bindPopup('<b>Teknik Arsitektur dan Perencanaan</b>').addTo(map); 
+                var marker = L.marker([-7.765184, 110.371274]).bindPopup('<b>Teknik Kimia</b>').addTo(map); 
+                var marker = L.marker([-7.765904, 110.371220]).bindPopup('<b>Teknik Mesin</b>').addTo(map);
+                var marker = L.marker([-7.766279, 110.372794]).bindPopup('<b>Teknik Nuklir dan Teknik Fisika</b>').addTo(map); 
+                var marker = L.marker([-7.765879, 110.373097]).bindPopup('<b>Teknik Geologi</b>').addTo(map); 
+                var marker = L.marker([-7.764057, 110.373225]).bindPopup('<b>Teknik Sipil dan Lingkungan</b>').addTo(map); 
+
+                // Ikon Khusus di Teknik Geodesi
+                var greenIcon = L.icon({
+                    iconUrl: 'https://simaster.ugm.ac.id/ugmfw-assets/images/maskot-simaster.png',
+                    iconSize:     [28, 35], 
+                    iconAnchor:   [9, 32.5] 
+                });
+                L.marker([-7.763983, 110.372615], {icon: greenIcon}).bindPopup('<b>Teknik Geodesi</b><br>Super Geger').addTo(map);
+
+                // Jalur
+                var jalur = L.polyline([
+                    [-7.766156, 110.374064], // Titik awal
+                    [-7.765697, 110.374014], // Titik kedua
+                    [-7.765525, 110.374046], // 
+                    [-7.764394, 110.374440], //
+                    [-7.764204, 110.374327], //
+                    [-7.764068, 110.374016], //
+                    [-7.764018, 110.373801], //
+                    [-7.763713, 110.373101], //
+                    [-7.763311, 110.372287]  // Titik Akhir
+                ], {
+                    color: 'rgb(188, 15, 223)',
+                    weight: 20,
+                    opacity: 0.65,
+                    dashArray: '25.15',
+                    lineJoin: 'round'
+                });
+
+                jalur.bindPopup("<b>Jalan Teknik to Geodesi</b><br>Jalan Tersingkat dari Portal menuju Parkiran Teknik Geodesi").addTo(map);
+            </script> 
+        </div>
+    </div>
+</body>
+</html>
